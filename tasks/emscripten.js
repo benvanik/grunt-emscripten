@@ -57,7 +57,8 @@ module.exports = function(grunt) {
       llvmLto: undefined,
       jcache: false,
       memoryInitFile: true,
-      compilerOptions: {}
+      compilerOptions: {},
+      defines: {}
     });
 
     // Grab inputs and outputs.
@@ -111,6 +112,10 @@ module.exports = function(grunt) {
       var value = options.compilerOptions[key];
       var safeValue = JSON.stringify(value).replace(/"/g, '\\"');
       command.push('-s "' + key + '=' + safeValue + '"');
+    }
+    for (var key in options.defines) {
+      var value = options.defines[key];
+      command.push('-D' + key + '=' + value);
     }
     includePaths.forEach(function(includePath) {
       //command.push('-I' + path.resolve(includePath));
