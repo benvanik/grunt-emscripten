@@ -64,6 +64,8 @@ module.exports = function(grunt) {
     // Grab inputs and outputs.
     var includePaths = grunt.file.expand(options.includePaths);
     var sourceFiles = grunt.file.expand(this.data.srcs);
+    var preJsFiles = grunt.file.expand(this.data.preJsSrcs || []);
+    var postJsFiles = grunt.file.expand(this.data.postJsSrcs || []);
     var targetPath = this.data.dest;
     var targetFilePrefix = path.join(targetPath, this.target);
 
@@ -108,6 +110,12 @@ module.exports = function(grunt) {
     if (options.memoryInitFile) {
       command.push('--memory-init-file 1');
     }
+    preJsFiles.forEach(function(file) {
+      command.push('--pre-js ' + file);
+    });
+    postJsFiles.forEach(function(file) {
+      command.push('--post-js ' + file);
+    });
     for (var key in options.compilerOptions) {
       var value = options.compilerOptions[key];
       var safeValue = JSON.stringify(value).replace(/"/g, '\\"');
