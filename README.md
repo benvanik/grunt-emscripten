@@ -26,64 +26,59 @@ In your project's Gruntfile, add a section named `emscripten` to the data object
 grunt.initConfig({
   emscripten: {
     options: {
-      // Task-specific options go here.
+      // Compiler options
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+    <output>: {
+      srcs: [...],
+      dest: 'build/'
     },
   },
 })
 ```
 
 ### Options
+Most of the options are based on the command line options for `emcc`, documented in the
+[emscripten documentation](https://kripken.github.io/emscripten-site/docs/tools_reference/emcc.html)
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+- *emcc:* (`String`, Default: `'emcc'`) Name of `emcc` executable
+- *llvm:* (`String`, Default: `'/usr/local/bin/'`) Path to search for llvm
+- *includePaths:* (`String | String[]`, Default: `''`)
+- *closure:* (`Number`) `--closure 0/1/2`
+- *o:* (`Number`) Set optimization level `-O0` .. `-O3` 
+- *g:* (`Number`) Set debug level `-g0` .. `-g4`
+- *llvmOpts:* (`String`) `--llvmOpts ...`
+- *llvmLto:* (`String`) `--llvmLto ...`
+- *jcache:* false,
+- *memoryInitFile:* (`true`) `--memory-init-file 0/1`
+- *compilerOptions:* (`{}`) Object containing `-s <key>=<value>` arguments. See
+  [emscripten/src/settings.js](https://github.com/kripken/emscripten/blob/master/src/settings.js)
+  for detailed options.
+- *defines:* (`{}`) Object containing `-D <key>=<value>` arguments
 
-A string value that is used to do something with whatever.
+### Inputs and Outputs
+- *srcs:* Source files
+- *preJsSrcs:* `--pre-js`
+- *postJsSrcs:* `--post-js`
+- *dest:* output directory. The output filename is based on the target name.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
-
-### Usage Examples
-
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
+### Example Usage
 ```js
 grunt.initConfig({
   emscripten: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+    output: {
+      options: {
+        memoryInitFile: false
+        o: 3
+      },
+      srcs: 'src/*.c',
+      dest: 'build/'
     },
   },
 })
 ```
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  emscripten: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
-
-## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+This will run `emcc` with flags `--memory-init-file 0` and `-O3` on all
+`*.c` files in `src/` and write the output to `build/output.js`
 
 ## Release History
 _(Nothing yet)_
