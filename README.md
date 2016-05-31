@@ -40,26 +40,26 @@ grunt.initConfig({
 Most of the options are based on the command line options for `emcc`, documented in the
 [emscripten documentation](https://kripken.github.io/emscripten-site/docs/tools_reference/emcc.html)
 
-- *emcc:* (`String`, Default: `'emcc'`) Name of `emcc` executable
-- *llvm:* (`String`, Default: `'/usr/local/bin/'`) Path to search for llvm
-- *includePaths:* (`String | String[]`, Default: `''`)
-- *closure:* (`Number`) `--closure 0/1/2`
-- *o:* (`Number`) Set optimization level `-O0` .. `-O3` 
-- *g:* (`Number`) Set debug level `-g0` .. `-g4`
-- *llvmOpts:* (`String`) `--llvmOpts ...`
-- *llvmLto:* (`String`) `--llvmLto ...`
-- *jcache:* false,
-- *memoryInitFile:* (`true`) `--memory-init-file 0/1`
-- *compilerOptions:* (`{}`) Object containing `-s <key>=<value>` arguments. See
+- **emcc:** (`String`, Default: `'emcc'`) Name of `emcc` executable
+- **llvm:** (`String`, Default: `'/usr/local/bin/'`) Path to search for llvm
+- **includePaths:** (`String | String[]`, Default: `''`)
+- **closure:** (`Number`) `--closure 0/1/2`
+- **o:** (`Number`) Set optimization level `-O0` .. `-O3` 
+- **g:** (`Number`) Set debug level `-g0` .. `-g4`
+- **llvmOpts:** (`String`) `--llvmOpts ...`
+- **llvmLto:** (`String`) `--llvmLto ...`
+- **jcache:** false,
+- **memoryInitFile:** (`true`) `--memory-init-file 0/1`
+- **compilerOptions:** (`{}`) Object containing `-s <key>=<value>` arguments. See
   [emscripten/src/settings.js](https://github.com/kripken/emscripten/blob/master/src/settings.js)
   for detailed options.
-- *defines:* (`{}`) Object containing `-D <key>=<value>` arguments
+- **defines:** (`{}`) Object containing `-D <key>=<value>` arguments
 
 ### Inputs and Outputs
-- *srcs:* Source files
-- *preJsSrcs:* `--pre-js`
-- *postJsSrcs:* `--post-js`
-- *dest:* output directory. The output filename is based on the target name.
+- **srcs:** Source files
+- **preJsSrcs:** `--pre-js`
+- **postJsSrcs:** `--post-js`
+- **dest:** output directory. The output filename is based on the target name.
 
 ### Example Usage
 ```js
