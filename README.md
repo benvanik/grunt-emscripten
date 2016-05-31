@@ -48,18 +48,18 @@ Most of the options are based on the command line options for `emcc`, documented
 - **g:** (`Number`) Set debug level `-g0` .. `-g4`
 - **llvmOpts:** (`String`) `--llvmOpts ...`
 - **llvmLto:** (`String`) `--llvmLto ...`
-- **jcache:** false,
-- **memoryInitFile:** (`true`) `--memory-init-file 0/1`
-- **compilerOptions:** (`{}`) Object containing `-s <key>=<value>` arguments. See
+- **jcache:** (`Boolean`, Default: `false`) `--jcache`,
+- **memoryInitFile:** (`Boolean`, Default: `true`) `--memory-init-file 0/1`
+- **compilerOptions:** (`Object`) Object containing `-s <key>=<value>` arguments. See
   [emscripten/src/settings.js](https://github.com/kripken/emscripten/blob/master/src/settings.js)
   for detailed options.
-- **defines:** (`{}`) Object containing `-D <key>=<value>` arguments
+- **defines:** (`Object`) Object containing `-D <key>=<value>` arguments
 
 ### Inputs and Outputs
 - **srcs:** Source files
 - **preJsSrcs:** `--pre-js`
 - **postJsSrcs:** `--post-js`
-- **dest:** output directory. The output filename is based on the target name.
+- **dest:** Output directory. The output filename is based on the target name.
 
 ### Example Usage
 ```js
